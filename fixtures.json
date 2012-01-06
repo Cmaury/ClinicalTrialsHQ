@@ -1,0 +1,75 @@
+{
+        "pk": trial_id,
+        "model": trials.trial,
+        "fields": {
+                "trial_id": trial_id,
+                "brief_title": brief_title,
+                "official_title": official_title,
+                "brief_summary": brief_summary,
+                "detailed_Description": detailed_description,
+                "overall_status": overall_status,
+                "phase": phase,
+                "enrollment": enrollment,
+                "study_type": study_type,
+                "condition": _______________,
+                "elligibility": elligibility,
+                "criteria": ______________,
+                "overall_contact": _______________,
+                "location": ___________,
+                "lastchanged_date": lastchanged_date,
+                "firstreceived_date": firstreceived_date,
+                "keyword": __________,
+                "condition_mesh": condition_mesh,
+        }
+
+        "pk": null,
+        "model": trials.locations,
+        "fields": {
+               "trials_id": trials_id,
+               "facility": facility,
+               "city": city,
+               "state": state,
+               "zip": zip,
+               "country": country,
+        }
+
+        "pk": null,
+        "model": trials.keyword,
+        "fields": {
+                "trial_id": trial_id,
+                "keyword": keyword,
+        }
+
+        "pk": null,
+        "model": trials.conditions,
+        "fields": {
+                "trial_id": trial_id,
+                "condition": condition,
+        }
+
+        "pk": null,
+        "model": trials.mesh_key,
+        "fields": {
+                "trial_id": trial_id,
+                "keyword"": mesh_key,
+        }
+
+        "pk": null,
+        "model": trials.criteria,
+        "fields": {
+                "trial_id": trial_id,
+                "gender": gender,
+                "minimum_age": minimum_age",
+                "maximum_age":maximum_age,
+                "healthy_participants": healthy_participants,
+        }
+
+        "pk": null,
+        "model": trials.contact,
+        "fields": {
+                "trial_id": trial_id,
+                "last_name": last_name,
+                "phone": phone,
+                "email": email,
+        }
+}

@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script type="text/javascript"> 
+        function email_blank()
+            {
+            document.email.email.value="";
+        }
+        function make_blank()
+            {
+            document.search.q.value ="";
+        }
+    </script>
+</head>
+<body>
+<div class="title">
+    <div class="logo">
+    </div>
+    <div class="search">
+        <form action="/search/" name="search"method="get">
+             <input type="text" size="50" name="q">
+             <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+{% if result %}
+<div class="trial">
+    <ul>
+        <li><a href="/trial/{{ result.trial_id }}">{{ result.trial_id }}</a></li>
+        {% ifnotequal result.brief_title "NULL" %}
+            <li>{{ result.brief_title }}</li>
+        {% else %}
+            {% ifnotequal result.official_title "NULL" %}
+                <li>{{ result.official_title }}</li>
+            {% endifnotequal %}
+        {% endifnotequal %}
+        <li>{{ result.brief_summary }}</li>
+        {% if result.elligibility %}
+            <li>{{ result.elligibility }}</li>
+        {% endif %}
+        <li>{{ result.location.city }}</li>
+        <li>{{ result.lastchanged_date }}</li>
+        <li>{{ result.detailed_Description }}</li>
+        <li>{{ result.overall_Status }}</li>
+        <li>{{ result.phase }}</li>
+        <li>{{ result.study_type }}</li>
+        <li></li>
+        <li></li>
+</div>
+{% endif %}
+</body>
+</html>
+

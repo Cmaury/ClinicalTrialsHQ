@@ -1,0 +1,19 @@
+<html>
+<head>
+    <script type="text/javascript"> 
+        function make_blank()
+            {
+            document.search.q.value ="";
+        }
+    </script>
+</head>
+<body>
+    <div class="search">        
+        <form action="/search/" name ="search"method="get">
+            <input type="text" name="q" size='50' value="Search by medical condition" onclick="make_blank()">
+            <input type="submit" value="Search">
+        </form>
+        <p>Example: "lymphoma", "Stargardt's", "Type II Diabetes"</p>
+    </div>
+</body>
+</html>
