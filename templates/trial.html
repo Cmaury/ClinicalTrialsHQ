@@ -1,0 +1,91 @@
+<html>
+<head>
+    <script type="text/javascript"> 
+        function email_blank()
+            {
+            document.email.email.value="";
+        }
+        function make_blank()
+            {
+            document.search.q.value ="";
+        }
+    </script>
+</head>
+<body>
+<div class="title">
+    <div class="logo">
+    </div>
+    <div class="search">
+        <form action="/search/" name="search"method="get">
+             <input type="text" size="50" name="q">
+             <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+{% if result %}
+<div class="trial">
+    <ul>
+        <li><a href="/trial/{{ result.trial_id }}">{{ result.trial_id }}</a></li> 
+        {% ifnotequal result.brief_title "NULL" %}
+            <h2>Title</h2>
+            {{ result.brief_title }}
+        {% else %}
+            {% ifnotequal result.official_title "NULL" %}
+                <h2>Title</h2>
+                {{ result.official_title }}
+            {% endifnotequal %}
+        {% endifnotequal %}
+        <h2>Summary</h2>
+        {{ result.brief_summary }}
+        {% if result.elligibility %}
+            <h2>Elligibility</h2>
+            {{ result.elligibility }}
+        {% endif %}
+        <div id="location_container">
+        <h2>Locations</h2>
+        <ul>
+        {% for location in result.location.all %}
+        <div id="location">
+            <li>{{ location.facility }}</li>
+            <li>{{ location.city }}</li>
+            {% ifnotequal location.state "NULL" %}
+                <li>{{ location.state }}</li>
+            {% else %}
+                {% ifnotequal location.country "" %}
+                    <li>{{ location.country }}</li>
+                {% endifnotequal %}
+            {% endifnotequal %}
+        </ul>
+        </div>
+        {% endfor %}
+        <h2>Last Updated</h2>
+        {{ result.lastchanged_date }}
+        {% ifnotequal result.detailed_Description "NULL" %}
+            <h2>Detailed Description</h2>
+            {{ result.detailed_Description }}
+        {% endifnotequal %}
+        <h2>Status</h2>
+        {{ result.overall_Status }}
+        <h2>Phase</h2>
+        {{ result.phase }}
+        <h2>Study Type</h2>
+        {{ result.study_type }}
+        <h2>Contact Info</h2>
+        {% ifnotequal result.overall_contact.last_name "NULL" %}
+            {{ result.overall_contact.last_name }}
+        {% endifnotequal %}
+        {% ifnotequal result.overall_contact.phone "NULL" %}
+            {{ result.overall_contact.phone }}
+        {% endifnotequal %}
+        {% ifnotequal result.overall_contact.email "NULL" %}
+            {{ result.overall_contact.email }}
+        {% endifnotequal %}
+
+</div>
+<div id="backlink">
+<a href="http://clinicaltrials.gov/ct2/show/"{{ result.trial_id }}>See original National Institute of Healh entry for more information</a>
+</div
+{% endif %}
+</body>
+</html>
+

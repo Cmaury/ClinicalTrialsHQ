@@ -1,0 +1,120 @@
+<html>
+<head>
+    <script type="text/javascript"> 
+        function condition_blank()
+            {
+            document.email.condition.value="";
+        }
+        function email_blank()
+            {
+            document.email.email.value="";
+        }
+        function make_blank()
+            {
+            document.search.q.value ="";
+        }
+    </script>
+</head>
+<body>
+<div class="title">
+    <div class="logo">
+    </div>
+    <div class="search">
+        <form action="/search/" name="search"method="get">
+             <input type="text" size="50" name="q" value={% ifnotequal query "onclick=\"make_blank()\"" %}
+               " {{ query }} "
+            {% else %}
+                Enter Search Term
+            {% endifnotequal %}
+             onclick="make_blank()">
+             <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+{% if results %}
+    <p>Found {{ results|length }} trial{{ results|pluralize }}.</p>
+    <ul>
+        {% for result in results %}
+        <div id="result_item"><a href="/trial/{{ result.trial_id }}"><span style="position:absolute; width:100%; height:100%; top:0; left: 0; z-index: 1"></span></a>
+        <div id="title">
+        {% ifnotequal result.brief_title "NULL" %}
+            <h2>Title</h2>
+            {{ result.brief_title }}
+        {% else %}
+            {% ifnotequal result.official_title "NULL" %}
+                <h2>Title</h2>
+                {{ result.official_title }}
+            {% endifnotequal %} 
+        {% endifnotequal %}
+        </div>
+        <div id="summary">
+        <h2>Summary</h2>
+        {{ result.brief_summary }}
+        </div>
+        <div id="location_container">
+        <h2>Locations</h2>
+        <ul>
+        {% for location in result.location.all %}
+        <div id="location">
+            <li>{{ location.facility }}</li>
+            <li>{{ location.city }}</li>
+            {% ifnotequal location.state "NULL" %}
+                <li>{{ location.state }}</li>
+            {% else %}
+                {% ifnotequal location.country "" %} 
+                    <li>{{ location.country }}</li>
+                {% endifnotequal %}
+            {% endifnotequal %}
+        </div>
+        {% endfor %}
+        </ul>
+        </div>
+        <div id='status'>
+        <h2>Summary</h2>
+        {{ result.overall_Status }}
+        </div>
+        </div>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    
+<div class="no_results">
+    {% if alerts %}
+        {% if alerts.email_exists %}
+    <div class="error">
+        <p style="color: red;">
+           {{ email }} is already following {{ condition }}.  
+        </p>
+    </div>
+        {% endif %}
+        {% if alerts.submitted %}
+    <div class="error">
+        <p style="color: red;">
+            Success! You will receive a confirmation email shortly.
+        </p>
+    </div>
+        {% endif %}
+    {% else %}    
+    {% if form.errors %}
+    <div class="error">
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    </div>
+    {% endif %}
+    <div class="ask_for_email">
+        <p>There are currently no trials listed for {{ query }}.</p>
+        <p>If you would like to receive notificications when new trials are announced,
+please provide you email address.</p>
+    <div class="email">
+        <form action="/notify/" name="email" method="post">
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    {% endif %}
+    </div>
+{% endif %}
+</body>
+</html>

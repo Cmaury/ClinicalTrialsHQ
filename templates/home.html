@@ -8,6 +8,11 @@
     </script>
 </head>
 <body>
+    <div class="errpr">
+        {% if error %}
+        <p style="color: red;">This is not a valid Trial. Please search again.</p>
+    {% endif %}
+    </div>
     <div class="search">        
         <form action="/search/" name ="search"method="get">
             <input type="text" name="q" size='50' value="Search by medical condition" onclick="make_blank()">
