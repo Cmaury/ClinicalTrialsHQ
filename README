@@ -21,11 +21,15 @@ I built clinicaltrialsHQ for two reasons:
 1. It's a fun project to practice coding.
 2. I had a need.
 
-I was diagnosed with (Stargardt's disease)[http://en.wikipedia.org/wiki/Stargardt_disease], 
+I was diagnosed with Stargardt's disease (http://en.wikipedia.org/wiki/Stargardt_disease), 
 and since there is no cure, I started looking for open clinical trials. clinicaltrials.gov
 is a great resource for practitioners, but is a little overwhelming for patients. Additionally, 
 you have to keep visisint the site, to check for new trials. This project is meant to be a more
 patient friendly site, that allows patients to be notified when there are new trials.
+
+This is the first website that I have built from scratch. It's not complete. I still need to do all the CSS,
+and improve the search results and data integrity, but it's a start. One that I am proud of, and one that I'm
+going to keep working on.
 
  
 
